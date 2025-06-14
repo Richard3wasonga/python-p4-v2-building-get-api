@@ -26,7 +26,7 @@ class Game(db.Model, SerializerMixin):
     price = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
-    user = association_proxy("reviews", "user", creator=lambda user_obj: Review(user=users))
+    user = association_proxy("reviews", "user", creator=lambda user_obj: Review(user=user_obj))
 
     reviews = db.relationship("Review", back_populates="game")
 
